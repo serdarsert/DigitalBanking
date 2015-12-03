@@ -184,6 +184,6 @@
 
 
     angular.module(DigitalBanking.Shared.Constants.AppNames.DigitalBankingApp)
-        .service(DigitalBanking.Shared.Constants.ServiceNames.DataService, DataService);
+        .service('dataService', DataService);
 
 }

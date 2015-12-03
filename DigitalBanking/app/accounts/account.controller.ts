@@ -37,8 +37,8 @@
             '$filter',
             '$window',
             '$timeout',
-            'dataService',
-            'modalService'];
+            'dataService'/*,
+            'modalService'*/];
 
         constructor(private $location: ng.ILocationService,
             private $filter: Filters.IAccountBalanceFilter,
