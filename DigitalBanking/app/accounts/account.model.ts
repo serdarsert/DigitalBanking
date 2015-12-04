@@ -9,7 +9,11 @@
 
 
     export enum AccountTypeEnum {
-        Deposit, Saving
+        Deposit, Saving, Demand, Term
+    }
+
+    export interface IAccountRouteParams extends ng.route.IRouteParamsService {
+        accountId: string;
     }
 }
 

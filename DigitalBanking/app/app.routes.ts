@@ -31,24 +31,24 @@
             */
             $routeProvider
                 .when('/login', {
-                    controller: 'expenseApp.LoginController',
-                    templateUrl: viewBase + 'login.html'
-                    //controllerAs: 'vm'
+                    controller: Shared.Constants.ControllerFullNames.LoginController,
+                    templateUrl: viewBase + 'login/login.html',
+                    controllerAs: 'vm'
                 })
                 .when('/home', {
                     controller: Shared.Constants.ControllerFullNames.AccountController,
                     templateUrl: viewBase + 'accounts/account.html',
-                    //controllerAs: 'vm'
+                    controllerAs: 'vm'
                 })
                 .when('/accounts', {
                     controller: Shared.Constants.ControllerFullNames.AccountController,
                     templateUrl: viewBase + 'accounts/account.html',
-                    //controllerAs: 'vm'
+                    controllerAs: 'vm'
                 })
-                .when('/account/:id', {
+                .when('/account/:accountId', {
                     controller: Shared.Constants.ControllerFullNames.AccountController,
-                    templateUrl: viewBase + 'accounts/account.html',
-                    //controllerAs: 'vm'
+                    templateUrl: viewBase + 'accounts/accountDetail.html',
+                    controllerAs: 'vm'
                 })
                 .otherwise({ redirectTo: '/home' });
         }

@@ -71,6 +71,6 @@
         }
     }
 
-    angular.module(Shared.Constants.AppNames.DigitalBankingApp).service('modal', ModalService);
+    angular.module(Shared.Constants.AppNames.DigitalBankingApp).service('modalService', ModalService);
 
 }

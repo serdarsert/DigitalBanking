@@ -19,7 +19,7 @@
         }
 
         GetAccounts() {
-            var url = '/Account/';
+            var url = '/api/Account/';
             return this.$http.get<Accounts.Models.IAccount[]>(url).then((result: ng.IHttpPromiseCallbackArg<Accounts.Models.IAccount[]>) => {
                 var accounts: Accounts.Models.IAccount[] = result.data;
                 return accounts;
@@ -32,7 +32,7 @@
 
 
         GetAccount(id: number) {
-            var url = '/Account/' + id;
+            var url = '/api/Account/' + id;
             return this.$http.get<Accounts.Models.IAccount>(url).then((result: ng.IHttpPromiseCallbackArg<Accounts.Models.IAccount>) => {
                 var account: Accounts.Models.IAccount = result.data;
                 return account;
@@ -44,7 +44,7 @@
         }
 
         DeleteAccount(id: number) {
-            var url = '/Account/' + id;
+            var url = '/api/Account/' + id;
 
             return this.$http.delete(url).then((status) => {
                 return status.data;

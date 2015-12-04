@@ -1,0 +1,9 @@
+﻿<div class="panel panel-default" data-ng-hide="vm.SelectedAccount == null">
+    <div class="panel-heading">{{::vm.SelectedAccount.Name}}</div>
+    <div class="panel-body">
+        <img data-ng-src="Content/Images/accounts/{{::vm.SelectedAccount.Type | lowercase}}.png" cl class="cardImage" alt="account Image" />
+        {{::vm.SelectedAccount}}></div>
+</div>
+<div data-ng-show="vm.SelectedAccount == null">
+    <strong>No account found...</strong>
+</div>

@@ -10,6 +10,7 @@
 
     export class ControllerFullNames {
         static AccountController: string = "DigitalBanking.Accounts.AccountController";
+        static LoginController: string = "DigitalBanking.Login.LoginController";
     }
 
     export class ServiceNames {

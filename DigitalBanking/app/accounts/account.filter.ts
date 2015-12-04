@@ -11,7 +11,8 @@
     export function AccountBalanceFilter() {
 
         return (accounts: Models.IAccount[], criteriaEnum: CompareCriteriaEnum, filterAmount: Shared.Models.IAmount) => {
-
+            if (filterAmount == null)
+                return accounts;
             var matches: Models.IAccount[] = [];
             for (var i = 0; i < accounts.length; i++) {
                 var account = accounts[i];

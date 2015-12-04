@@ -26,6 +26,7 @@
             Card: 0,
             List: 1
         };
+        SelectedAccount: Models.IAccount;
 
         //paging
         totalRecords: number = 0;
@@ -33,21 +34,36 @@
         currentPage: number = 1;
         numRecordsDisplaying: number;
 
-        static $inject = ['$location',
+        static $inject = ['$scope', '$rootScope', '$location',
             '$filter',
+            '$routeParams',
             '$window',
             '$timeout',
-            'dataService'/*,
-            'modalService'*/];
+            'dataService'
+        ];
 
-        constructor(private $location: ng.ILocationService,
+        constructor(
+            private $scope: ng.IScope,
+            private $rootScope: ng.IRootScopeService,
+            private $location: ng.ILocationService,
             private $filter: Filters.IAccountBalanceFilter,
+            private $routeParams: Models.IAccountRouteParams,
             private $window: ng.IWindowService,
             private $timeout: ng.ITimeoutService,
             private dataService: Services.DataService,
+            private pageService: Services.PageService,
             private modalService: Services.ModalService) {
-            this.getAccountsSummary();
+            //pageService.Title = "Hesaplar";
+            if ($routeParams.accountId != undefined)
+            {
+                var id = (this.$routeParams.accountId) ? parseInt(this.$routeParams.accountId, 10) : 0;
+                this.GetAccount(id);
+            }
+            else
+                this.getAccountsSummary();
         }
+
+
 
         pageChanged(page) {
             this.currentPage = page;
@@ -81,7 +97,7 @@
             });
         }
 
-        changeDisplayMode(displayMode) {
+        ChangeDisplayMode(displayMode) {
             switch (displayMode) {
                 case this.DisplayMode.Card:
                     this.listDisplayModeEnabled = false;
@@ -112,6 +128,21 @@
                 .then((data) => {
                     this.accounts = data;
                     this.filterAccounts();
+
+                    this.$timeout(() => {
+                        this.cardAnimationClass = ''; //Turn off animation
+                    }, 1000);
+
+                }, (error: Shared.Interfaces.IHttpPromiseCallbackErrorArg) => {
+                    this.$window.alert('Sorry, an error occurred: ' + error.data.message);
+                });
+        }
+
+        GetAccount(id: number) {
+            var account: Models.IAccount;
+            this.dataService.GetAccount(id)
+                .then((data) => {
+                    this.SelectedAccount = data;
 
                     this.$timeout(() => {
                         this.cardAnimationClass = ''; //Turn off animation
